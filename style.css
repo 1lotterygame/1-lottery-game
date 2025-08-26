@@ -1,0 +1,183 @@
+/* =========================================================
+   1 Lottery Game – Site Styles (styles.css)
+   Author: You
+   Notes: Dark, modern UI. Responsive. Accessible focus states.
+   ========================================================= */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --bg: #0b1020;
+  --panel: #0b122b;
+  --panel-2: #0e1535;
+  --muted: #93a4c3;
+  --text: #e7eefc;
+  --accent: #0ea5e9;     /* primary */
+  --accent-2: #22c55e;   /* secondary */
+  --border: #1f2a44;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* ---------- Base / Reset ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: radial-gradient(1200px 800px at 70% -10%, #18213b 0%, var(--bg) 55%);
+  color: var(--text);
+  line-height: 1.65;
+  letter-spacing: .2px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent), white 25%);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Header / Nav ---------- */
+header {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--bg) 60%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 12px 24px;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .3px; }
+.logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #2563eb);
+  display: grid; place-items: center; color: #fff; font-weight: 800; box-shadow: var(--shadow);
+}
+
+.nav a.btn {
+  padding: 10px 14px; border: 1px solid var(--border);
+  border-radius: 12px; background: #0d1430; color: var(--text);
+}
+.nav a.btn:hover { background: #0f1736; }
+
+/* ---------- Hero ---------- */
+.hero { padding: 48px 24px 8px; }
+.hero-card {
+  background: linear-gradient(180deg, var(--panel-2), #0b1125);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.15; margin: 0 0 10px; }
+.sub { color: var(--muted); font-size: clamp(14px, 2vw, 16px); margin-bottom: 18px; }
+
+.cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border);
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 600;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent), #2563eb); color: #fff; }
+.btn-primary:hover { filter: brightness(1.05); }
+.btn-secondary { background: #101833; color: var(--text); }
+.btn-secondary:hover { background: #121c3a; }
+
+/* ---------- Main Layout ---------- */
+main {
+  display: grid; grid-template-columns: 280px 1fr; gap: 24px; margin-top: 22px;
+}
+@media (max-width: 960px) {
+  main { grid-template-columns: 1fr; }
+  aside { order: 2; }
+  article { order: 1; }
+}
+
+/* ---------- Sidebar (TOC) ---------- */
+aside {
+  position: sticky; top: 76px; align-self: start;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px;
+}
+.toc-title { font-weight: 700; margin: 6px 0 8px; }
+.toc a {
+  display: block; padding: 8px 10px; border-radius: 10px; color: var(--muted);
+}
+.toc a:hover { background: #0d1636; color: var(--text); }
+
+/* ---------- Article ---------- */
+article {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px;
+}
+section + section { margin-top: 28px; }
+h2 { font-size: clamp(22px, 2.8vw, 30px); margin: 0 0 6px; }
+h3 { font-size: clamp(18px, 2.2vw, 22px); margin: 12px 0 4px; }
+p { margin: 10px 0 12px; }
+ul, ol { margin: 8px 0 12px 20px; }
+li { margin: 6px 0; }
+
+/* Note / Callout blocks */
+.note {
+  border-left: 4px solid var(--accent);
+  padding: 10px 12px; background: #0e1840;
+  border-radius: 10px; color: var(--muted);
+}
+.callout {
+  display: grid; gap: 10px; grid-template-columns: 1fr 1fr;
+  background: linear-gradient(180deg, #0d1430, #0b1125);
+  border: 1px solid var(--border); padding: 14px;
+  border-radius: 12px; margin: 10px 0;
+}
+@media (max-width: 720px) { .callout { grid-template-columns: 1fr; } }
+
+/* ---------- FAQ ---------- */
+details {
+  border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: #0b132a;
+}
+details + details { margin-top: 10px; }
+summary { cursor: pointer; font-weight: 700; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; float: right; color: var(--muted); }
+details[open] summary::after { content: "−"; }
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 26px; padding: 30px 24px; color: var(--muted);
+  border-top: 1px solid var(--border); background: #0a1023; text-align: center;
+}
+.small { font-size: .92rem; }
+
+/* ---------- Utilities ---------- */
+:target { scroll-margin-top: 90px; }       /* Offset for sticky header when using anchors */
+.hidden { display: none !important; }
+.center { text-align: center; }
+.max-w-prose { max-width: 75ch; }
+
+/* ---------- Print basics ---------- */
+@media print {
+  body { background: #fff; color: #000; }
+  header, .cta, aside, footer { display: none !important; }
+  article { box-shadow: none; border: none; padding: 0; }
+}
